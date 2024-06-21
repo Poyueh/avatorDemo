@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>three.js webgl - FBX loader</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+</head>
+
+<body>
+
+
+<script type="module">
+
+    // 以下程式碼行為是你要設計的
+    import {AvatarExecutor} from "./script/AvatarExecutor";
+    import {MODEL_LIST} from "./script/MODEL_LIST";
+    import {SKIN_COLOR} from "./script/SKIN_COLOR";
+    import {TEXTURE_LIST} from "./script/TEXTURE_LIST";
+    import {AvatarData} from "./script/AvatarData";
+    import {ControlPanel} from "./script/ControlPanel";
+
+    // 後端傳來預設資料 將資料存在這 ViewModel
+    const avatarData = new AvatarData();
+    avatarData.body_up_A = MODEL_LIST.CLOTHES_B_01;
+    avatarData.skin = SKIN_COLOR.C;
+    avatarData.eyes = TEXTURE_LIST.EYES_A_01;
+    avatarData.mouth = TEXTURE_LIST.MOUTH_A_01;
+    avatarData.face = TEXTURE_LIST.NONE;
+
+    // 依賴注入
+    const avatarExecutor = new AvatarExecutor(avatarData);
+    // 初始化 並執行
+    await avatarExecutor.init();
+    avatarExecutor.animate();
+
+    // dat.gui
+    new ControlPanel(avatarData, avatarExecutor);
+
+</script>
+<div id="three"></div>
+</body>
+</html>

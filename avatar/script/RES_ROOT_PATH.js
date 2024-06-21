@@ -1,0 +1,1 @@
+export const RES_ROOT_PATH = "./resources";
