@@ -1,2 +1,2 @@
-# avatorDemo
-Avator
+# avatar
+3D Avatar
